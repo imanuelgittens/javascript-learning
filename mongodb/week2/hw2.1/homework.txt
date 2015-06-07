@@ -1,0 +1,17 @@
+{
+	"_id" : ObjectId("55730346c15fe39e454d142b"),
+	"Day" : 1,
+	"Time" : 54,
+	"State" : "Vermont",
+	"Airport" : "BTV",
+	"Temperature" : 39,
+	"Humidity" : 57,
+	"Wind Speed" : 6,
+	"Wind Direction" : 170,
+	"Station Pressure" : 29.6,
+	"Sea Level Pressure" : 150
+}
+
+QUERY
+
+db.data.find({'Wind Direction': {$gt:  180, $lt: 360}}).sort({'Temperature': -1}).pretty();
