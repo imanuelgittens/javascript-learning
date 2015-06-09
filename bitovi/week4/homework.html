@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bitovi Homework for Week 4</title>
+</head>
+
+<body>
+
+    <script>
+        
+        /*Exercise
+        
+        
+        Build a tag library that creates elements of the following type in the least lines of code: a, div, span, form, h1, h2, h3, h4
+        
+        Example usage:
+        var h1 = make.h1();
+        h1.innerHTML = 'Hello World';
+        document.body.appendChild(h1);
+        
+        var a = make.a();
+        a.href = 'http://facebook.com';
+        a.innerHTML = 'Facebook';
+        document.body.appendChild(a)
+        
+        */
+        
+        
+        
+        /*Make util code here*/
+
+        var make = {};
+        var tagNames = ['form', 'h1', 'a', 'label'];
+
+
+        
+        
+        for (var i = 0; i < tagNames.length; i++) {
+            (function(tagName) {        //A local scope for the 'tagName' varibale must be created
+                make[tagName] = function() {
+                    return document.createElement(tagName);
+                }
+            })(tagNames[i]);
+            
+
+        }
+        
+        /*This solution works as well for modern browsers. Foreach creates a kind of local scope for the variable 'tagName'
+        
+        
+        tagNames.forEach(function(tagName) {
+            make[tagName] = function() {
+                return document.createElement(tagName);
+            }
+        });
+        
+        */
+        
+
+        /*End make util code*/
+
+        var h1 = make.h1();
+        h1.innerHTML = 'Hello World';
+        document.body.appendChild(h1);
+
+        var a = make.a();
+        a.href = 'http://facebook.com';
+        a.innerHTML = 'Facebook';
+        document.body.appendChild(a);
+    </script>
+
+</body>
+
+</html>
