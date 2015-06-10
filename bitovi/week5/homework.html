@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bitovi Homework for Week 4</title>
+</head>
+
+<body>
+
+    <script>
+        /*Exercise
+        
+        Implement the DOT operator from javascript in a function
+        by walking the __proto__ chain. 
+
+        
+        */
+
+
+
+        /*DOT util code here*/
+
+         // Context
+         // person.name
+         // DOT(person, 'name');
+        DOT = function(obj, prop) {
+            if (obj && obj.hasOwnProperty(prop)) {
+                return obj[prop];
+            } else if (obj) {
+                return DOT(obj.__proto__, prop);
+            }
+        };
+
+         // Context
+         // person.speak()
+         // DOTCALL(person, 'speak', [])
+
+        DOTCALL = function(obj, prop, args) {
+            var fn = DOT(obj, prop);
+            return fn.apply(obj, args)
+        };
+
+        /*End DOT util code*/
+    </script>
+
+</body>
+
+</html>
