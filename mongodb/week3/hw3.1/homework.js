@@ -1,0 +1,73 @@
+//Answer is incorrect!
+
+var MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb://localhost:27017/school', function(err, db) {
+    if (err) throw err;
+
+    var query = { };
+    var col = db.collection('students');
+    var cursor = col.find(query);
+   
+    cursor.each(function(err, doc){
+        if (err) throw err;
+
+        if (doc == null) {
+            return  db.close();
+        }
+        
+        var result = [];
+        var scores = doc.scores;
+        if(scores[2].score >= scores[3].score){
+            result.push(scores[0]); 
+            result.push(scores[1]);
+            result.push(scores[3]);
+        }else{
+            result.push(scores[0]); 
+            result.push(scores[1]);
+            result.push(scores[3]);
+        }
+        
+        col.update({'_id': doc._id}, {$set: {'scores': result}}, function(err, updated){
+            if (err){
+                throw err;
+            }
+            console.log(updated + ' 1 doc is updated');
+        });
+        
+        result = [];
+        
+    });
+    
+    return db.close();
+});
+
+/*var MongoClient = require('mongodb').MongoClient;
+
+var url = 'mongodb://localhost:27017/school';
+
+MongoClient.connect(url, function(err, db){
+    if (err) throw err;
+
+    var q = { };
+    var col = db.collection('students');
+    var cursor = col.find(q);
+//    col.ensureIndex( { 'scores': 1 } );
+
+    cursor.each(function(err, doc){
+        if (err) throw err;
+
+        if (doc == null) {
+            return  db.close();
+        }
+
+        if (doc !== null) {
+            col.update({'_id':doc._id},{ $pop : {scores:4}}, function(err, updated) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log(updated + ' 1 doc is updated');
+            });
+        }
+    });
+});*/
