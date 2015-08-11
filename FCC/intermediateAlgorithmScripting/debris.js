@@ -4,7 +4,7 @@ function orbitalPeriod(arr) {
     var reformattedArray = arr.map(function(obj) {
         var rObj = {};
         rObj.name = obj.name;
-        rObj.orbitalPeriod = (2 * Math.PI * (Math.sqrt((Math.pow(arr[0].avgAlt + earthRadius, 3))/ GM))).toFixed(0)/1;
+        rObj.orbitalPeriod = (2 * Math.PI * (Math.sqrt((Math.pow(obj.avgAlt + earthRadius, 3))/ GM))).toFixed(0)/1;
         //We divide by one because toFixed() returns a string. Dividing by one changes it back to a number. 
         return rObj;
         
