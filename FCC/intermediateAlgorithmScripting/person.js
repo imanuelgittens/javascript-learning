@@ -1,36 +1,19 @@
-var Person = function(firstAndLast) {
-    
-    var fullName = firstAndLast;
-    var firstName = firstAndLast.split(' ')[0];
-    var lastName = firstAndLast.split(' ')[1];
-    
-    this.getFullName = function(){
+function orbitalPeriod(arr) {
+    var GM = 398600.4418;
+    var earthRadius = 6367.4447;
+    var reformattedArray = arr.map(function(obj) {
+        var rObj = {};
+        rObj.name = obj.name;
+        rObj.orbitalPeriod = (2 * Math.PI * (Math.sqrt((Math.pow(arr[0].avgAlt + earthRadius, 3))/ GM))).toFixed(0);
+        return rObj;
         
-        return fullName;
-    };
-  
-    this.getFirstName = function(){
-        
-      return firstName;
-    };
-  
-    this.getLastName = function(){
-        return lastName;
-    };
-  
-    this.setFirstName = function(first){
-         firstName = first;
-    };
-  
-    this.setLastName = function(last){
-         lastName = last;
-    };
-  
-    this.setFullName = function(firstAndLast){
-         fullName = firstAndLast;
-    };
-    
-};
+    });
+   return reformattedArray;
+    //var op = (2 * Math.PI * (Math.sqrt((Math.pow(arr[0].avgAlt + earthRadius, 3))/ GM))).toFixed(0);
+    //return op;
+}
 
-var bob = new Person('Bob Ross');
-bob.getFullName();
+orbitalPeriod([{
+    name: "sputkin",
+    avgAlt: 35873.5553
+}]);
